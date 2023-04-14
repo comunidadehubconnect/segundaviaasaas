@@ -34,7 +34,7 @@
 **1º Passo Instalações**
 
 </p>
-**Ter Chatwoot+N8N+Quepasa Instalados** 
+Ter Chatwoot+N8N+Quepasa Instalados
 </p>
 Links Abaixo 👇👇👇👇👇👇
 </p>
