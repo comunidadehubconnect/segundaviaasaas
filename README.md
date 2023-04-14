@@ -86,8 +86,14 @@ Adicione seu toke Saas NO>Ajusta as Informações>Token Assas
 
 **4º passo Criando AUTOMAÇÂO E FLUXO no Chatwoot*
 
+Crie uma automação 
+<img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/Chatwootetapa1.png" alt="Quepasa-logo" width="700" />
 
+Crie a regra
+<img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/Chatwootetapa2.png" alt="Quepasa-logo" width="700" />
 
+Crie um Webhook
+<img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/Chatwootetapa3.png" alt="Quepasa-logo" width="700" />
 
 ----------------------------------------------------------------------------
 ----------------------------------------------------------------------------
