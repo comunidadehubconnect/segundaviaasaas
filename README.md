@@ -31,9 +31,33 @@
 ```
 ----------------------------------------------------------------------------
 
-**Primeiros Passos**
+**1º Passo Instalações**
 
+</p>
 Ter Chatwoot+N8N+Quepasa Instalados 
+</p>
+Links Abaixo 👇👇👇👇👇👇
+</p>
+👉 https://github.com/EngajamentoFlow/chatwoot
+</p>
+*Manual Instalação N8N*
+</p>
+👉 https://github.com/EngajamentoFlow/n8n
+</p>
+*Manual Instalação QUEPASA*
+</p>
+👉 https://github.com/EngajamentoFlow/quepasa
+</p></p>
+*Montando Caixa de Entrada*
+</p>
+👉 https://github.com/EngajamentoFlow/quepasan8nchatwoot
+</p>
+
+----------------------------------------------------------------------------
+
+**2º passo e pegar Token no Assas*
+
+
 
 ----------------------------------------------------------------------------
 
