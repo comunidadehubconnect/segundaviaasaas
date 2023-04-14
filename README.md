@@ -66,17 +66,30 @@ Links Abaixo 👇👇👇👇👇👇
 
 Acesse opção
 
-<img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/Assas.png" alt="Quepasa-logo" width="700" />
+<img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/N8Netapa1.png" alt="Quepasa-logo" width="700" />
 
 Acesse depois
 
-<img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/Assas.png" alt="Quepasa-logo" width="700" />
+<img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/N8Netapa2.png" alt="Quepasa-logo" width="700" />
 
 Adione Urle click em Importar 
 
 https://raw.githubusercontent.com/EngajamentoFlow/segundaviaasaasquepasa/main/Workflow.json
 
+Worflow importado com sucesso
 
+Adicione seu toke Saas NO>Ajusta as Informações>Token Assas
+
+<img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/N8Netapa2.png" alt="Quepasa-logo" width="700" />
+
+----------------------------------------------------------------------------
+
+**4º passo Criando AUTOMAÇÂO E FLUXO no Chatwoot*
+
+
+
+
+----------------------------------------------------------------------------
 ----------------------------------------------------------------------------
 
 **Pronto tudo Funcionando**
