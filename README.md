@@ -57,7 +57,7 @@ Links Abaixo 👇👇👇👇👇👇
 
 **2º passo e pegar Token no Assas*
 
-
+<img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/Assas.png" alt="Quepasa-logo" width="400" />	
 
 ----------------------------------------------------------------------------
 
