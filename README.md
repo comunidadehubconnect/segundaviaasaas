@@ -57,43 +57,60 @@ Links Abaixo 👇👇👇👇👇👇
 
 **2º passo e pegar Token no Assas**
 
+</p>
 <img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/Assas.png" alt="Quepasa-logo" width="700" />	
+</p>
 
 ----------------------------------------------------------------------------
 
 
 **3º passo Worflow Adicionando Worflow*
 
+</p>
 Acesse opção
-
+</p>
 <img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/N8Netapa1.png" alt="Quepasa-logo" width="700" />
-
+</p>
 Acesse depois
-
+</p>
 <img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/N8Netapa2.png" alt="Quepasa-logo" width="700" />
-
+</p>
 Adione Urle click em Importar 
+</p>
 
+```
 https://raw.githubusercontent.com/EngajamentoFlow/segundaviaasaasquepasa/main/Workflow.json
+```
 
+</p>
 Worflow importado com sucesso
-
+</p>
 Adicione seu token Saas NO>Ajusta as Informações>Token Assas
-
+</p>
 <img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/N8Netapa2.png" alt="Quepasa-logo" width="700" />
+</p>
 
 ----------------------------------------------------------------------------
 
-**4º passo Criando AUTOMAÇÂO E FLUXO no Chatwoot*
+</p>
 
+
+**4º passo Criando AUTOMAÇÂO E FLUXO no Chatwoot**
+
+</p>
 Crie uma automação 
+</p>
+</p>
 <img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/Chatwootetapa1.png" alt="Quepasa-logo" width="700" />
-
+</p>
 Crie a regra
+</p>
 <img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/Chatwootetapa2.png" alt="Quepasa-logo" width="700" />
-
+</p>
 Crie um Webhook
+</p>
 <img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/Chatwootetapa3.png" alt="Quepasa-logo" width="700" />
+</p>
 
 ----------------------------------------------------------------------------
 ----------------------------------------------------------------------------
