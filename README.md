@@ -34,21 +34,21 @@
 **1º Passo Instalações**
 
 </p>
-Ter Chatwoot+N8N+Quepasa Instalados 
+**Ter Chatwoot+N8N+Quepasa Instalados** 
 </p>
-Links Abaixo 👇👇👇👇👇👇
+**Links Abaixo** 👇👇👇👇👇👇
 </p>
 👉 https://github.com/EngajamentoFlow/chatwoot
 </p>
-*Manual Instalação N8N*
+**Manual Instalação N8N**
 </p>
 👉 https://github.com/EngajamentoFlow/n8n
 </p>
-*Manual Instalação QUEPASA*
+**Manual Instalação QUEPASA**
 </p>
 👉 https://github.com/EngajamentoFlow/quepasa
 </p></p>
-*Montando Caixa de Entrada*
+**Montando Caixa de Entrada**
 </p>
 👉 https://github.com/EngajamentoFlow/quepasan8nchatwoot
 </p>
@@ -64,7 +64,7 @@ Links Abaixo 👇👇👇👇👇👇
 ----------------------------------------------------------------------------
 
 
-**3º passo Worflow Adicionando Worflow*
+**3º passo Worflow Adicionando Worflow**
 
 </p>
 Acesse opção
