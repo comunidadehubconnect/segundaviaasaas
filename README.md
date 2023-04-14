@@ -78,7 +78,7 @@ https://raw.githubusercontent.com/EngajamentoFlow/segundaviaasaasquepasa/main/Wo
 
 Worflow importado com sucesso
 
-Adicione seu toke Saas NO>Ajusta as Informações>Token Assas
+Adicione seu token Saas NO>Ajusta as Informações>Token Assas
 
 <img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/N8Netapa2.png" alt="Quepasa-logo" width="700" />
 
