@@ -1,0 +1,500 @@
+{
+  "name": "[012] - Asaas segunda Boleto copy",
+  "nodes": [
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "CPF",
+              "value": "={{ $node[\"CPF\"].json[\"cpf\"] }}"
+            },
+            {
+              "name": "Telefone",
+              "value": "={{ $node.Webhook.json.body.conversation.meta.sender.identifier }}"
+            },
+            {
+              "name": "Token Assas",
+              "value": "=Colocar Token do Asaas"
+            },
+            {
+              "name": "Nome",
+              "value": "={{ $node.Webhook.json.body.conversation.messages[0].sender.name }}"
+            },
+            {
+              "name": "URLQUEPASA",
+              "value": "https://quepasa.seudominio.com"
+            },
+            {
+              "name": "TOKEN QUEPASA",
+              "value": "Colocar Token do Quepasa"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c32fafba-e7a6-42d8-a308-ff6980f2e6cf",
+      "name": "Ajusta as Informações",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        420,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://www.asaas.com/api/v3/customers",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "cpfCnpj",
+              "value": "={{ $node.CPF.json.cpf }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "access_token",
+              "value": "={{ $json[\"Token Assas\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b2f661c3-a33d-4d71-bdae-b6248bd02f96",
+      "name": "Consulta CPF CNPJ na Asaas",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        640,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://www.asaas.com/api/v3/payments",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "customer",
+              "value": "={{ $node[\"Consulta CPF CNPJ na Asaas\"].json.data[0].id }}"
+            },
+            {
+              "name": "status",
+              "value": "PENDING"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "access_token",
+              "value": "={{ $node[\"Ajusta as Informações\"].json[\"Token Assas\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "05d404fa-a0c5-43cd-a0e3-fb498b4f1754",
+      "name": "Consulta Fatura",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1340,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.data[0].email }}",
+              "operation": "contains",
+              "value2": "=@"
+            }
+          ]
+        }
+      },
+      "id": "5685e997-aab3-4135-bac0-c65e9dc7b056",
+      "name": "Valida se existe o Cliente",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        840,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.totalCount }}",
+              "operation": "equal",
+              "value2": 1
+            }
+          ]
+        }
+      },
+      "id": "7f21007c-768c-489f-ba59-8fbc2f43191b",
+      "name": "Valida se existe fatura Existente",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "baseUrl": "={{ $node[\"Ajusta as Informações\"].json.URLQUEPASA }}",
+        "token": "={{ $node[\"Ajusta as Informações\"].json[\"TOKEN QUEPASA\"] }}",
+        "text": "=✅ Localizei seu Cadastro! \n\n👉 *{{ $json.data[0].name }}* \n\n✅ Só mais um instante, por favor!",
+        "chatId": "={{ $node[\"Ajusta as Informações\"].json.Telefone }}"
+      },
+      "id": "aad5d18f-2ea5-4d30-88c7-622d0dd2b0c3",
+      "name": "Cadastro Localizado",
+      "type": "n8n-nodes-quepasa.quepasa",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "baseUrl": "={{ $node[\"Ajusta as Informações\"].json.URLQUEPASA }}",
+        "token": "={{ $node[\"Ajusta as Informações\"].json[\"TOKEN QUEPASA\"] }}",
+        "text": "=🧑‍🚒 Segue a segunda-via da sua Fatura!\n\n👉 *Fatura:* {{ $node[\"Consulta Fatura\"].json[\"data\"][0][\"bankSlipUrl\"] }}\n\n👉  *Nome:* {{ $node[\"Consulta Fatura\"].json[\"data\"][0][\"description\"] }}\n\n👉  *Valor:* R$ {{ $node[\"Consulta Fatura\"].json[\"data\"][0][\"value\"] }},00",
+        "chatId": "={{ $node[\"Ajusta as Informações\"].json.Telefone }}"
+      },
+      "id": "5425abde-e19d-4e54-aa11-85957292d273",
+      "name": "Envia Mensagem com a Fatura",
+      "type": "n8n-nodes-quepasa.quepasa",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "baseUrl": "={{ $node[\"Ajusta as Informações\"].json.URLQUEPASA }}",
+        "token": "={{ $node[\"Ajusta as Informações\"].json[\"TOKEN QUEPASA\"] }}",
+        "text": "👉  Você não tem nenhuma fatura vencidada!",
+        "chatId": "={{ $node[\"Ajusta as Informações\"].json.Telefone }}"
+      },
+      "id": "ce6b436b-5917-48cb-b892-031631cdee59",
+      "name": "Envia Mensagem sem Faturas",
+      "type": "n8n-nodes-quepasa.quepasa",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        980
+      ]
+    },
+    {
+      "parameters": {
+        "baseUrl": "={{ $node[\"Ajusta as Informações\"].json.URLQUEPASA }}",
+        "token": "={{ $node[\"Ajusta as Informações\"].json[\"TOKEN QUEPASA\"] }}",
+        "text": "=✅ *Estamos Finalizando seu atendimento*\n\n👉 Segue Numero de Protocolo: {{ $json.message.id }}\n\n✅ Qualquer Dúvida digite 3 para falar com Suporte",
+        "chatId": "={{ $node[\"Ajusta as Informações\"].json.Telefone }}"
+      },
+      "id": "8915a392-a8be-4c8c-8a86-5a4dc4751ec3",
+      "name": "Protocolo",
+      "type": "n8n-nodes-quepasa.quepasa",
+      "typeVersion": 1,
+      "position": [
+        2020,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.quantidade_digitos }}",
+              "operation": "equal",
+              "value2": 11
+            }
+          ]
+        }
+      },
+      "id": "1afedcaa-e3ee-47c6-bf5e-ffeac75a2cbf",
+      "name": "Verifica se mensagem e Valida",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        760,
+        700
+      ],
+      "continueOnFail": true,
+      "notes": "Sucesso"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "cpf",
+              "value": "={{ $json.body.content }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "01fb0758-11e8-4ecc-8535-c0415effd17b",
+      "name": "CPF",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        740,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obter o número do CPF ou CNPJ a partir de uma variável\nconst numero = items[0].json.cpf;\n\n// Remover todos os caracteres especiais do número\nconst numeroSemPontuacao = numero.replace(/[^\\d]+/g,'');\n\n// Verificar se o número é um CPF ou CNPJ válido\nif (numeroSemPontuacao.length === 11) {\n  // O número é um CPF\n  return {quantidade_digitos: 11};\n} else if (numeroSemPontuacao.length === 14) {\n  // O número é um CNPJ\n  return {quantidade_digitos: 11};\n} else {\n  // O número não é válido\n  return {erro: \"O número informado não é um CPF ou CNPJ válido.\"};\n}\n"
+      },
+      "id": "3539797a-8d35-4023-afc3-bda4f5163438",
+      "name": "Verifica  CPF ou CNPJ",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        480,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "asaas",
+        "options": {}
+      },
+      "id": "d2bc8616-37b4-4fc9-b915-9b731be8e8c0",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        480,
+        460
+      ],
+      "webhookId": "bf691eff-2437-4ded-acad-175364fe1c7e"
+    },
+    {
+      "parameters": {
+        "baseUrl": "={{ $node[\"Ajusta as Informações\"].json.URLQUEPASA }}",
+        "token": "={{ $node[\"Ajusta as Informações\"].json[\"TOKEN QUEPASA\"] }}",
+        "text": "=✅ Não localizamos seu Cadastro!\n\n✅ Por favor, entre em contato o financeiro!",
+        "chatId": "={{ $node[\"Ajusta as Informações\"].json[\"Telefone\"] }}"
+      },
+      "id": "1b818ec6-5f72-4ef7-bed4-d94569932de1",
+      "name": "Cadastro Não Localizado",
+      "type": "n8n-nodes-quepasa.quepasa",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        980
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Ajusta as Informações": {
+      "main": [
+        [
+          {
+            "node": "Consulta CPF CNPJ na Asaas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Consulta Fatura": {
+      "main": [
+        [
+          {
+            "node": "Valida se existe fatura Existente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Consulta CPF CNPJ na Asaas": {
+      "main": [
+        [
+          {
+            "node": "Valida se existe o Cliente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Valida se existe o Cliente": {
+      "main": [
+        [
+          {
+            "node": "Cadastro Localizado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Cadastro Não Localizado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Valida se existe fatura Existente": {
+      "main": [
+        [
+          {
+            "node": "Envia Mensagem com a Fatura",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Envia Mensagem sem Faturas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cadastro Localizado": {
+      "main": [
+        [
+          {
+            "node": "Consulta Fatura",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Envia Mensagem com a Fatura": {
+      "main": [
+        [
+          {
+            "node": "Protocolo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Envia Mensagem sem Faturas": {
+      "main": [
+        [
+          {
+            "node": "Protocolo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verifica se mensagem e Valida": {
+      "main": [
+        [
+          {
+            "node": "Ajusta as Informações",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CPF": {
+      "main": [
+        [
+          {
+            "node": "Verifica  CPF ou CNPJ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verifica  CPF ou CNPJ": {
+      "main": [
+        [
+          {
+            "node": "Verifica se mensagem e Valida",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "CPF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "1c374aa4-8cd7-42bf-afb5-405d5946d74d",
+  "id": "32",
+  "meta": {
+    "instanceId": "c6c66158402f24d81c43c239d2f5ecc6498fcfa98fa9baaa5595fa1aa1e6cec9"
+  },
+  "tags": [
+    {
+      "createdAt": "2023-04-05T01:59:36.678Z",
+      "updatedAt": "2023-04-05T01:59:36.678Z",
+      "id": "1",
+      "name": "SUFFICIT"
+    },
+    {
+      "createdAt": "2023-04-05T02:01:04.871Z",
+      "updatedAt": "2023-04-05T02:01:04.871Z",
+      "id": "2",
+      "name": "CHATWOOT"
+    },
+    {
+      "createdAt": "2023-04-05T02:01:04.872Z",
+      "updatedAt": "2023-04-05T02:01:04.872Z",
+      "id": "3",
+      "name": "QUEPASA"
+    },
+    {
+      "createdAt": "2023-04-22T20:00:06.627Z",
+      "updatedAt": "2023-04-22T20:00:06.627Z",
+      "id": "6",
+      "name": "EngajamentoFlow"
+    }
+  ]
+}
