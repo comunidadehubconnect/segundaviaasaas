@@ -34,7 +34,9 @@ Worflow importado com sucesso
 
 ![image](https://github.com/cwmkt/segundaviaasaas/assets/91642837/916bcd4c-2e9f-453d-9670-3a0958cc76a2)
 
-Variavel: &asaastoken=tokenXXXXXXXXXXXXXXXXXX
+No final da URL do Webhook adicione a seguinte Variavel: &asaastoken=tokenXXXXXXXXXXXXXXXXXX
+
+
 
 
 
