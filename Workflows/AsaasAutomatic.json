@@ -1,0 +1,269 @@
+{
+  "name": "AsaasAutomatic",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "=INSERT INTO \"automation_rules\" (\"account_id\", \"name\", \"description\", \"event_name\", \"conditions\", \"actions\", \"created_at\", \"updated_at\", \"active\") VALUES ({{ $json.account}}, 'Asaas', 'Asaas', 'message_created', '[{\"values\": [\"2\"], \"attribute_key\": \"content\", \"filter_operator\": \"equal_to\", \"custom_attribute_type\": \"\"}]', '[{\"action_name\": \"send_message\", \"action_params\": [\"👉 Por favor, digite seu CPF ou CNPJ.\"]}]', 'NOW()', 'NOW()', 'true');\n\n",
+        "additionalFields": {}
+      },
+      "id": "0b9064af-e5d7-41c5-8635-e8e7932776cb",
+      "name": "Cria Automação",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [
+        -660,
+        940
+      ],
+      "alwaysOutputData": false,
+      "notesInFlow": false,
+      "credentials": {
+        "postgres": {
+          "id": "Sn9ZEKI7krtFb8l2",
+          "name": "Postgres account"
+        }
+      },
+      "notes": "Sucesso"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "=SELECT \"accounts\".\"id\" AS \"account\" FROM \"accounts\" LEFT JOIN \"automation_rules\" ON \"accounts\".\"id\" = \"automation_rules\".\"account_id\" AND \"automation_rules\".\"name\" = 'Asaas' WHERE \"automation_rules\".\"name\" IS NULL;",
+        "additionalFields": {}
+      },
+      "id": "f606f6a1-5cc2-4bb1-9af3-996a1662bd9e",
+      "name": "Missing Automations",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [
+        -900,
+        940
+      ],
+      "alwaysOutputData": false,
+      "credentials": {
+        "postgres": {
+          "id": "Sn9ZEKI7krtFb8l2",
+          "name": "Postgres account"
+        }
+      },
+      "notes": "Sucesso"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "URL N8N",
+              "value": "http://127.0.0.1:5678"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e47b8205-095a-4593-a01a-aae019b0f168",
+      "name": "Colocar Dados",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        -1160,
+        1100
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "seconds"
+            }
+          ]
+        }
+      },
+      "id": "9a4d4716-20d4-48e4-8e26-7bf56bb83078",
+      "name": "Schedule By 30 Seconds",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1420,
+        1100
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## (2.0.0) Recommendations \n* Remember set timeout to 30 seconds \n* Cria automação e webhook para integração ASAAS.",
+        "width": 395
+      },
+      "id": "8d0a60d9-bbab-4d90-ac2e-c818c625f7cc",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1940,
+        1100
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "=SELECT DISTINCT \"id\" AS \"accounts\"\nFROM \"accounts\"\nWHERE NOT EXISTS (\n    SELECT NULL\n    FROM \"webhooks\"\n    WHERE \"account_id\" = \"accounts\".\"id\"\n);\n",
+        "additionalFields": {}
+      },
+      "id": "d622bbaa-146f-4671-a873-2425602886c3",
+      "name": "Missing Greetings For Webhook",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [
+        -900,
+        1240
+      ],
+      "alwaysOutputData": false,
+      "credentials": {
+        "postgres": {
+          "id": "Sn9ZEKI7krtFb8l2",
+          "name": "Postgres account"
+        }
+      },
+      "notes": "Sucesso"
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "webhooks",
+          "mode": "list",
+          "cachedResultName": "webhooks"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "account_id",
+              "value": "={{ $json.accounts }}"
+            },
+            {
+              "column": "url",
+              "value": "={{ $('Colocar Dados').item.json['URL N8N'] }}/webhook/asaas"
+            },
+            {
+              "column": "subscriptions",
+              "value": "[\"contact_created\"]"
+            },
+            {
+              "column": "created_at",
+              "value": "2023-07-31T11:31:16.046-04:00"
+            },
+            {
+              "column": "updated_at",
+              "value": "2023-07-31T11:31:16.046-04:00"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3bc0b1fe-5cdd-40e1-9b4b-787f7c85eaa9",
+      "name": "Cria Webhook",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.1,
+      "position": [
+        -660,
+        1240
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "Sn9ZEKI7krtFb8l2",
+          "name": "Postgres account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Missing Automations": {
+      "main": [
+        [
+          {
+            "node": "Cria Automação",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Colocar Dados": {
+      "main": [
+        [
+          {
+            "node": "Missing Greetings For Webhook",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Missing Automations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule By 30 Seconds": {
+      "main": [
+        [
+          {
+            "node": "Colocar Dados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Missing Greetings For Webhook": {
+      "main": [
+        [
+          {
+            "node": "Cria Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {},
+  "versionId": "4ab4b225-b935-4ac8-9009-ffba5b8709bc",
+  "id": "77xXwUKKJIy2zdE2",
+  "meta": {
+    "instanceId": "db6967b3250b016c04716c63df7dbc003d482e7989c914380ce8cc05dcf118fc"
+  },
+  "tags": [
+    {
+      "createdAt": "2023-08-22T20:29:16.268Z",
+      "updatedAt": "2023-08-22T20:29:16.268Z",
+      "id": "1SwThJSvuVO2ge7p",
+      "name": "QUEPASA"
+    },
+    {
+      "createdAt": "2023-09-15T01:00:40.167Z",
+      "updatedAt": "2023-09-15T01:00:40.167Z",
+      "id": "YzgnRBnOyWGEYc8d",
+      "name": "CWMKT"
+    },
+    {
+      "createdAt": "2023-09-15T00:59:51.235Z",
+      "updatedAt": "2023-09-15T00:59:51.235Z",
+      "id": "vvysJMRHVKf2sZES",
+      "name": "2.0"
+    },
+    {
+      "createdAt": "2023-08-22T20:29:16.268Z",
+      "updatedAt": "2023-08-22T20:29:16.268Z",
+      "id": "10yNytp7vaqToroj",
+      "name": "CHATWOOT"
+    }
+  ]
+}
