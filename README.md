@@ -14,58 +14,27 @@
 
 ## Segunda Via de boleto Asaas
 
-##  1º Passo Instalações
+##  1º Passo: Instalações
 
 
-Ter Chatwoot+N8N+Quepasa Instalados
+Ter as Instalações do Chatwoot+N8N+Quepasa
 
 
-
-##  2º passo e pegar Token no Assas
+##  2º Passo: Pegar Token do Assas
 
 
 <img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/Assas.png" alt="Quepasa-logo" width="700" />	
 
 
-## 3º passo Worflow Adicionando Worflow
+## 3º Passo:  Importe os Workflows
+
+Worflow importado com sucesso
+
+## 4º Passo: Inserir Token do Asaas no Webhook da Caixa entrada
+
+![image](https://github.com/cwmkt/segundaviaasaas/assets/91642837/916bcd4c-2e9f-453d-9670-3a0958cc76a2)
+
+Variavel: &asaastoken=tokenXXXXXXXXXXXXXXXXXX
 
 
-Acesse opção
-
-<img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/N8Netapa1.png" alt="Quepasa-logo" width="700" />
-
-Acesse depois
-
-<img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/N8Netapa2.png" alt="Quepasa-logo" width="700" />
-
-Adicione Url e click em Importar 
-
-
-```
-https://raw.githubusercontent.com/EngajamentoFlow/segundaviaasaasquepasa/main/Workflow.json
-```
-
-
-## Worflow importado com sucesso
-
-Adicione seu token Saas NO>Ajusta as Informações>Token Assas
-
-<img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/N8Netapa2.png" alt="Quepasa-logo" width="700" />
-
-
-## 4º passo Criando AUTOMAÇÂO E FLUXO no Chatwoot
-
-
-Crie uma automação 
-
-
-<img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/Chatwootetapa1.png" alt="Quepasa-logo" width="700" />
-
-Crie a regra
-
-<img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/Chatwootetapa2.png" alt="Quepasa-logo" width="700" />
-
-Crie um Webhook
-
-<img src="https://github.com/EngajamentoFlow/segundaviaasaasquepasa/blob/main/Chatwootetapa3.png" alt="Quepasa-logo" width="700" />
 
