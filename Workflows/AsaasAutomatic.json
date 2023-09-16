@@ -151,7 +151,7 @@
             },
             {
               "column": "subscriptions",
-              "value": "[\"contact_created\"]"
+              "value": "[\"message_updated\", \"message_created\"]"
             },
             {
               "column": "created_at",
@@ -235,7 +235,7 @@
   },
   "active": true,
   "settings": {},
-  "versionId": "4ab4b225-b935-4ac8-9009-ffba5b8709bc",
+  "versionId": "b6edb57b-e59a-47b5-b630-8644d883b89a",
   "id": "77xXwUKKJIy2zdE2",
   "meta": {
     "instanceId": "db6967b3250b016c04716c63df7dbc003d482e7989c914380ce8cc05dcf118fc"
