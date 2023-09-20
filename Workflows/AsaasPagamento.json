@@ -225,7 +225,7 @@
       "parameters": {
         "baseUrl": "=http://127.0.0.1:31000",
         "token": "={{ $json[\"Token Quepasa\"] }}",
-        "text": "=✅ Localizei seu Cadastro! \n\n👉 *{{ $item(\"0\").$node[\"Ajusta Informações do Quepasa\"].json[\"Nome\"] }}* \n\nVou enviar a proxima fatura",
+        "text": "=✅ Localizei seu Cadastro! \n\n👉 *{{ $item(\"0\").$node[\"Ajusta Informações do Quepasa\"].json[\"Nome\"] }}* \n\nVou enviar a próxima fatura.",
         "chatId": "={{ $('Webhook').item.json.body.conversation.messages[0].sender.identifier }}"
       },
       "id": "db424ff7-b261-4d96-b612-14c217a4a1cc",
@@ -241,7 +241,7 @@
       "parameters": {
         "baseUrl": "=http://127.0.0.1:31000",
         "token": "={{ $item(\"0\").$node[\"Valida se existe o Cliente\"].json[\"TOKEN\"] }}",
-        "text": "=🧑‍🚒 Segue a segunda-via da sua Fatura!\n\n👉 *Fatura:* {{ $item(\"0\").$node[\"Consulta Fatura\"].json[\"data\"][\"0\"][\"invoiceUrl\"] }}\n\n👉  *Nome:* {{ $item(\"0\").$node[\"Ajusta Informações do Quepasa\"].json[\"Nome\"] }}\n\n👉  *Valor:* R$ {{ $node[\"Consulta Fatura\"].json[\"data\"][0][\"value\"] }},00\n\n",
+        "text": "=🧑‍🚒 Segue a segunda-via da sua Fatura!\n\n👉 *Fatura:* {{ $item(\"0\").$node[\"Consulta Fatura\"].json[\"data\"][\"0\"][\"invoiceUrl\"] }}\n\n👉  *Nome:* {{ $item(\"0\").$node[\"Ajusta Informações do Quepasa\"].json[\"Nome\"] }}\n\n👉  *Valor:* R$ {{ $node[\"Consulta Fatura\"].json[\"data\"][0][\"value\"] }},00",
         "chatId": "={{ $item(\"0\").$node[\"Webhook\"].json[\"body\"][\"conversation\"][\"messages\"][\"0\"][\"sender\"][\"identifier\"] }}"
       },
       "id": "8ef67142-1473-4547-8297-fe67faab5f59",
@@ -257,7 +257,7 @@
       "parameters": {
         "baseUrl": "=http://127.0.0.1:31000",
         "token": "={{ $item(\"0\").$node[\"Valida se existe o Cliente\"].json[\"TOKEN\"] }}",
-        "text": "👉  Você não tem nenhuma fatura vencidada!",
+        "text": "👉  Você não tem nenhuma fatura vencida!",
         "chatId": "={{ $item(\"0\").$node[\"Webhook\"].json[\"body\"][\"conversation\"][\"messages\"][\"0\"][\"sender\"][\"identifier\"] }}"
       },
       "id": "5d387a79-f3b5-44de-b84d-f804807c3324",
@@ -624,7 +624,7 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "7b135573-bd29-4add-ac71-b38479423727",
+  "versionId": "3d3872cf-b083-4c41-8526-b938901db98d",
   "id": "6UtNV3Zk5mbCq7p3",
   "meta": {
     "instanceId": "db6967b3250b016c04716c63df7dbc003d482e7989c914380ce8cc05dcf118fc"
